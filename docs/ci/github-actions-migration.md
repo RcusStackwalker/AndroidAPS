@@ -5,7 +5,7 @@
 - Base branch: origin/dev. Working branch: ci/github-actions.
 - Replace CircleCI completely with GitHub Actions.
 - Run the full JVM and instrumented test suites automatically.
-- Trigger on pull requests into dev/master, pushes to dev/master, and manual dispatch.
+- Trigger on pull requests into dev/master, pushes to master and any branch starting with dev, and manual dispatch.
 - Cancel superseded runs.
 - Keep test results and coverage as GitHub artifacts; external uploads are optional and must not require upstream credentials.
 
@@ -35,8 +35,8 @@ Design confirmed by the user; implemented on ci/github-actions.
 ## Operating the workflows
 
 Enable GitHub Actions in the fork. No RUN_CI variable or secrets are required.
-The JVM workflow and four device jobs run for pushes to dev/master, PRs targeting
-those branches, and manual dispatch. Each device job uses an API 31 Play Store
+The JVM workflow and four device jobs run for pushes to master and any branch starting
+with dev, PRs targeting dev/master, and manual dispatch. Each device job uses an API 31 Play Store
 x86_64 emulator. App shards compile before emulator startup.
 
 Download unit-test-results and device-test-results-{A,B,C,modules} from the run
